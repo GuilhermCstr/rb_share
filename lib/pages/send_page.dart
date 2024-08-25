@@ -83,7 +83,7 @@ class _SendPageState extends State<SendPage> with Refena {
 
     return PopScope(
       canPop: true,
-      onPopInvoked: (value) {
+      onPopInvokedWithResult: (value, result) {
         if (widget.closeSessionOnClose) {
           _cancel();
         }

@@ -103,7 +103,7 @@ class _ReceivePageState extends State<ReceivePage> with Refena {
 
     return PopScope(
       canPop: true,
-      onPopInvoked: (value) => _decline(),
+      onPopInvokedWithResult: (value, result) => _decline(),
       child: Scaffold(
         body: SafeArea(
           child: Center(
@@ -294,10 +294,10 @@ class _ReceivePageState extends State<ReceivePage> with Refena {
                                 style: ElevatedButton.styleFrom(
                                   elevation: colorMode == ColorMode.yaru ? 0 : null,
                                   backgroundColor: colorMode == ColorMode.yaru
-                                      ? Theme.of(context).colorScheme.background
+                                      ? Theme.of(context).colorScheme.surface
                                       : Theme.of(context).colorScheme.error,
                                   foregroundColor: colorMode == ColorMode.yaru
-                                      ? Theme.of(context).colorScheme.onBackground
+                                      ? Theme.of(context).colorScheme.onSurface
                                       : Theme.of(context).colorScheme.onError,
                                 ),
                                 onPressed: () {
