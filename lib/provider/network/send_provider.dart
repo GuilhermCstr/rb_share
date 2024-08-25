@@ -60,35 +60,40 @@ class SendNotifier extends Notifier<Map<String, SendSessionState>> {
       background: background,
       status: SessionStatus.waiting,
       target: target,
-      files: Map.fromEntries(await Future.wait(files.map((file) async {
-        final id = _uuid.v4();
-        return MapEntry(
-          id,
-          SendingFile(
-            file: FileDto(
-              id: id,
-              fileName: file.name,
-              size: file.size,
-              fileType: file.fileType,
-              hash: null,
-              preview: files.length == 1 &&
-                      files.first.fileType == FileType.text &&
-                      files.first.bytes != null
-                  ? utf8.decode(
-                      files.first.bytes!,) // send simple message by embedding it into the preview
-                  : null,
-              legacy: target.version == '1.0',
-            ),
-            status: FileStatus.queue,
-            token: null,
-            thumbnail: file.thumbnail,
-            asset: file.asset,
-            path: file.path,
-            bytes: file.bytes,
-            errorMessage: null,
-          ),
-        );
-      }),),),
+      files: Map.fromEntries(
+        await Future.wait(
+          files.map((file) async {
+            final id = _uuid.v4();
+            return MapEntry(
+              id,
+              SendingFile(
+                file: FileDto(
+                  id: id,
+                  fileName: file.name,
+                  size: file.size,
+                  fileType: file.fileType,
+                  hash: null,
+                  preview: files.length == 1 &&
+                          files.first.fileType == FileType.text &&
+                          files.first.bytes != null
+                      ? utf8.decode(
+                          files.first.bytes!,
+                        ) // send simple message by embedding it into the preview
+                      : null,
+                  legacy: target.version == '1.0',
+                ),
+                status: FileStatus.queue,
+                token: null,
+                thumbnail: file.thumbnail,
+                asset: file.asset,
+                path: file.path,
+                bytes: file.bytes,
+                errorMessage: null,
+              ),
+            );
+          }),
+        ),
+      ),
       startTime: null,
       endTime: null,
       cancelToken: cancelToken,
@@ -244,7 +249,11 @@ class SendNotifier extends Notifier<Map<String, SendSessionState>> {
   }
 
   Future<void> _send(
-      String sessionId, Dio dio, Device target, Map<String, SendingFile> files,) async {
+    String sessionId,
+    Dio dio,
+    Device target,
+    Map<String, SendingFile> files,
+  ) async {
     bool hasError = false;
     final remoteSessionId = state[sessionId]!.remoteSessionId;
 
@@ -278,11 +287,14 @@ class SendNotifier extends Notifier<Map<String, SendSessionState>> {
         );
         final stopwatch = Stopwatch()..start();
         await dio.post(
-          ApiRoute.upload.target(target, query: {
-            if (remoteSessionId != null) 'sessionId': remoteSessionId,
-            'fileId': file.file.id,
-            'token': token,
-          },),
+          ApiRoute.upload.target(
+            target,
+            query: {
+              if (remoteSessionId != null) 'sessionId': remoteSessionId,
+              'fileId': file.file.id,
+              'token': token,
+            },
+          ),
           options: Options(
             headers: {
               'Content-Length': file.file.size,
@@ -318,7 +330,10 @@ class SendNotifier extends Notifier<Map<String, SendSessionState>> {
       state = state.updateSession(
         sessionId: sessionId,
         state: (s) => s?.withFileStatus(
-            file.file.id, fileError != null ? FileStatus.failed : FileStatus.finished, fileError,),
+          file.file.id,
+          fileError != null ? FileStatus.failed : FileStatus.finished,
+          fileError,
+        ),
       );
     }
 
@@ -363,8 +378,12 @@ class SendNotifier extends Notifier<Map<String, SendSessionState>> {
           .read(dioProvider)
           .discovery
           // ignore: discarded_futures
-          .post(ApiRoute.cancel.target(sessionState.target,
-              query: remoteSessionId != null ? {'sessionId': remoteSessionId} : null,),);
+          .post(
+            ApiRoute.cancel.target(
+              sessionState.target,
+              query: remoteSessionId != null ? {'sessionId': remoteSessionId} : null,
+            ),
+          );
     } catch (e) {
       _logger.warning('Error while canceling session', e);
     }
@@ -410,7 +429,9 @@ class SendNotifier extends Notifier<Map<String, SendSessionState>> {
 
   void setBackground(String sessionId, bool background) {
     state = state.updateSession(
-        sessionId: sessionId, state: (s) => s?.copyWith(background: background),);
+      sessionId: sessionId,
+      state: (s) => s?.copyWith(background: background),
+    );
   }
 }
 

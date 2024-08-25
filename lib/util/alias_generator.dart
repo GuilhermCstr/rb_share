@@ -28,7 +28,7 @@ List<String> names = [
   'J. Lucas',
   'Gilberto',
   'Katia',
-  'Luccão'
+  'Luccão',
 ];
 
 List<String> languages = [
