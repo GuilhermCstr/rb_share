@@ -129,7 +129,7 @@ mixin SettingsTabVmMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && SettingsTabVmMapper.ensureInitialized().isValueEqual(this as SettingsTabVm, other));
+        (runtimeType == other.runtimeType && SettingsTabVmMapper.ensureInitialized().equalsValue(this as SettingsTabVm, other));
   }
 
   @override

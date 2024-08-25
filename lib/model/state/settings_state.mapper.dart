@@ -149,7 +149,7 @@ mixin SettingsStateMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && SettingsStateMapper.ensureInitialized().isValueEqual(this as SettingsState, other));
+        (runtimeType == other.runtimeType && SettingsStateMapper.ensureInitialized().equalsValue(this as SettingsState, other));
   }
 
   @override

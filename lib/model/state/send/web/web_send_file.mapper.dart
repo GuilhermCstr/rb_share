@@ -71,7 +71,7 @@ mixin WebSendFileMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && WebSendFileMapper.ensureInitialized().isValueEqual(this as WebSendFile, other));
+        (runtimeType == other.runtimeType && WebSendFileMapper.ensureInitialized().equalsValue(this as WebSendFile, other));
   }
 
   @override

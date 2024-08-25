@@ -69,7 +69,7 @@ mixin PurchaseStateMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && PurchaseStateMapper.ensureInitialized().isValueEqual(this as PurchaseState, other));
+        (runtimeType == other.runtimeType && PurchaseStateMapper.ensureInitialized().equalsValue(this as PurchaseState, other));
   }
 
   @override

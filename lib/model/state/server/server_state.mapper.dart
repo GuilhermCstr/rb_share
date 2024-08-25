@@ -85,7 +85,7 @@ mixin ServerStateMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && ServerStateMapper.ensureInitialized().isValueEqual(this as ServerState, other));
+        (runtimeType == other.runtimeType && ServerStateMapper.ensureInitialized().equalsValue(this as ServerState, other));
   }
 
   @override

@@ -66,7 +66,7 @@ mixin CachedApkProviderParamMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && CachedApkProviderParamMapper.ensureInitialized().isValueEqual(this as CachedApkProviderParam, other));
+        (runtimeType == other.runtimeType && CachedApkProviderParamMapper.ensureInitialized().equalsValue(this as CachedApkProviderParam, other));
   }
 
   @override

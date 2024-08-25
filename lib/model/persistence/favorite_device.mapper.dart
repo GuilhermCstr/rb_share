@@ -84,7 +84,7 @@ mixin FavoriteDeviceMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && FavoriteDeviceMapper.ensureInitialized().isValueEqual(this as FavoriteDevice, other));
+        (runtimeType == other.runtimeType && FavoriteDeviceMapper.ensureInitialized().equalsValue(this as FavoriteDevice, other));
   }
 
   @override

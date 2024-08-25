@@ -71,7 +71,7 @@ mixin NearbyDevicesStateMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && NearbyDevicesStateMapper.ensureInitialized().isValueEqual(this as NearbyDevicesState, other));
+        (runtimeType == other.runtimeType && NearbyDevicesStateMapper.ensureInitialized().equalsValue(this as NearbyDevicesState, other));
   }
 
   @override

@@ -64,7 +64,7 @@ mixin LogEntryMappable {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (runtimeType == other.runtimeType && LogEntryMapper.ensureInitialized().isValueEqual(this as LogEntry, other));
+    return identical(this, other) || (runtimeType == other.runtimeType && LogEntryMapper.ensureInitialized().equalsValue(this as LogEntry, other));
   }
 
   @override

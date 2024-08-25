@@ -72,7 +72,7 @@ mixin ApkProviderParamMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && ApkProviderParamMapper.ensureInitialized().isValueEqual(this as ApkProviderParam, other));
+        (runtimeType == other.runtimeType && ApkProviderParamMapper.ensureInitialized().equalsValue(this as ApkProviderParam, other));
   }
 
   @override

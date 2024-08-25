@@ -93,7 +93,7 @@ mixin ReceiveHistoryEntryMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && ReceiveHistoryEntryMapper.ensureInitialized().isValueEqual(this as ReceiveHistoryEntry, other));
+        (runtimeType == other.runtimeType && ReceiveHistoryEntryMapper.ensureInitialized().equalsValue(this as ReceiveHistoryEntry, other));
   }
 
   @override

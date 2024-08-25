@@ -88,7 +88,7 @@ mixin ReceivingFileMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && ReceivingFileMapper.ensureInitialized().isValueEqual(this as ReceivingFile, other));
+        (runtimeType == other.runtimeType && ReceivingFileMapper.ensureInitialized().equalsValue(this as ReceivingFile, other));
   }
 
   @override

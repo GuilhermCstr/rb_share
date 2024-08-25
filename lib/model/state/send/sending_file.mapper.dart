@@ -91,7 +91,7 @@ mixin SendingFileMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && SendingFileMapper.ensureInitialized().isValueEqual(this as SendingFile, other));
+        (runtimeType == other.runtimeType && SendingFileMapper.ensureInitialized().equalsValue(this as SendingFile, other));
   }
 
   @override

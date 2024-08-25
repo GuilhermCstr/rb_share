@@ -87,7 +87,7 @@ mixin CrossFileMappable {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) || (runtimeType == other.runtimeType && CrossFileMapper.ensureInitialized().isValueEqual(this as CrossFile, other));
+    return identical(this, other) || (runtimeType == other.runtimeType && CrossFileMapper.ensureInitialized().equalsValue(this as CrossFile, other));
   }
 
   @override

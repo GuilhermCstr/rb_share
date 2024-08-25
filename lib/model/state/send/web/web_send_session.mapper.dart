@@ -73,7 +73,7 @@ mixin WebSendSessionMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && WebSendSessionMapper.ensureInitialized().isValueEqual(this as WebSendSession, other));
+        (runtimeType == other.runtimeType && WebSendSessionMapper.ensureInitialized().equalsValue(this as WebSendSession, other));
   }
 
   @override

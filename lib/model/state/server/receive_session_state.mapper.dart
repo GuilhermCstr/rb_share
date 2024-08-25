@@ -106,7 +106,7 @@ mixin ReceiveSessionStateMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && ReceiveSessionStateMapper.ensureInitialized().isValueEqual(this as ReceiveSessionState, other));
+        (runtimeType == other.runtimeType && ReceiveSessionStateMapper.ensureInitialized().equalsValue(this as ReceiveSessionState, other));
   }
 
   @override

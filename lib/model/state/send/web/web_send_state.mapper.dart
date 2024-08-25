@@ -71,7 +71,7 @@ mixin WebSendStateMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType && WebSendStateMapper.ensureInitialized().isValueEqual(this as WebSendState, other));
+        (runtimeType == other.runtimeType && WebSendStateMapper.ensureInitialized().equalsValue(this as WebSendState, other));
   }
 
   @override
