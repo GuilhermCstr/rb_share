@@ -88,24 +88,7 @@ class ReceiveTab extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Center(
-                      child: vm.quickSaveSettings
-                          ? ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context).colorScheme.primary,
-                                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                              ),
-                              onPressed: () async => vm.onSetQuickSave(context, false),
-                              child: Text('${t.general.quickSave}: ${t.general.on}'),
-                            )
-                          : TextButton(
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.grey,
-                              ),
-                              onPressed: () async => vm.onSetQuickSave(context, true),
-                              child: Text('${t.general.quickSave}: ${t.general.off}'),
-                            ),
-                    ),
+                    child: QuickSaveButton(vm: vm),
                   ),
                   const SizedBox(height: 15),
                 ],
@@ -196,6 +179,39 @@ class ReceiveTab extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class QuickSaveButton extends StatelessWidget {
+  const QuickSaveButton({
+    super.key,
+    required this.vm,
+  });
+
+  final ReceiveTabVm vm;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: vm.quickSaveSettings
+          ? ElevatedButton(
+            key: const ValueKey('botao'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              ),
+              onPressed: () async => vm.onSetQuickSave(context, false),
+              child: Text('${t.general.quickSave}: ${t.general.on}'),
+            )
+          : TextButton(
+            key: const ValueKey('botao'),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.grey,
+              ),
+              onPressed: () async => vm.onSetQuickSave(context, true),
+              child: Text('${t.general.quickSave}: ${t.general.off}'),
+            ),
     );
   }
 }
